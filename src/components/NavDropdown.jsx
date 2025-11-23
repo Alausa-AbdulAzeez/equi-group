@@ -22,14 +22,14 @@ const NavDropdown = ({
 
           {/* Sliding Modal */}
           <motion.div
-            className={`${style} bg-white  flex justify-center z-[1000] fixed top-[90px] right-[0px] w-screen bg-transparent`}
+            className={`${style} bg-white flex justify-center z-[1000] fixed top-[90px] right-[0px] w-screen bg-transparent`}
             initial={{ y: "-100%" }}
             animate={{ y: "0%" }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="h-full w-full  p-10 app__container">
-              <div className=" flex justify-end">
+            <div className="h-full w-full p-10 app__container">
+              <div className="flex justify-end">
                 <Icon
                   onClick={closeNavDropdown}
                   icon={"si:close-line"}
@@ -37,60 +37,25 @@ const NavDropdown = ({
                 />
               </div>
               <div className="flex h-full">
-                <SingleColumn
-                  title={subsections[0]?.title}
-                  style={"pr-6"}
-                  link={subsections[0]?.dropdownUrl}
-                  content={subsections[0]?.content}
-                  services={subsections[0]?.services}
-                  isReadMore={subsections[0]?.isReadMore}
-                  showIcon={subsections[0]?.showIcon}
-                  icon={subsections[0]?.icon}
-                  subsection={subsections[0]}
-                  setIsNavDropdownOpen={setIsNavDropdownOpen}
-                />
-                <SingleColumn
-                  title={subsections[1]?.title}
-                  style={"px-6 border-x border-x-secondary"}
-                  link={subsections[1]?.dropdownUrl}
-                  content={subsections[1]?.content}
-                  services={subsections[1]?.services}
-                  isReadMore={subsections[1]?.isReadMore}
-                  showIcon={subsections[1]?.showIcon}
-                  icon={subsections[1]?.icon}
-                  subsection={subsections[1]}
-                  setIsNavDropdownOpen={setIsNavDropdownOpen}
-                />
-                <SingleColumn
-                  title={subsections[2]?.title}
-                  style={"px-6"}
-                  link={subsections[2]?.dropdownUrl}
-                  content={subsections[2]?.content}
-                  services={subsections[2]?.services}
-                  isReadMore={subsections[2]?.isReadMore}
-                  showIcon={subsections[2]?.showIcon}
-                  icon={subsections[2]?.icon}
-                  subsection={subsections[2]}
-                  setIsNavDropdownOpen={setIsNavDropdownOpen}
-                />
-
-                {/* Extra cloolumn */}
-
-                {subsections[3]?.title && (
-                  <SingleColumn
-                    title={subsections[3]?.title}
-                    style={"px-6 border-l border-l-secondary"}
-                    link={subsections[3]?.dropdownUrl}
-                    content={subsections[3]?.content}
-                    services={subsections[3]?.services}
-                    isReadMore={subsections[3]?.isReadMore}
-                    showIcon={subsections[3]?.showIcon}
-                    icon={subsections[3]?.icon}
-                    subsection={subsections[3]}
-                    setIsNavDropdownOpen={setIsNavDropdownOpen}
-                  />
-                )}
-                {/* <div className="flex-1 opacity-0"></div> */}
+                {subsections
+                  .filter((sub) => sub && sub.title)
+                  .map((sub, idx) => (
+                    <SingleColumn
+                      key={sub.title}
+                      title={sub.title}
+                      style={
+                        idx === 0 ? "pr-6" : "px-6 border-l border-l-secondary"
+                      }
+                      link={sub.dropdownUrl}
+                      content={sub.content}
+                      services={sub.services}
+                      isReadMore={sub.isReadMore}
+                      showIcon={sub.showIcon}
+                      icon={sub.icon}
+                      subsection={sub}
+                      setIsNavDropdownOpen={setIsNavDropdownOpen}
+                    />
+                  ))}
               </div>
             </div>
           </motion.div>
@@ -113,7 +78,7 @@ const SingleColumn = ({
   icon,
 }) => {
   return (
-    <div className={`${style} flex-1 h-full `}>
+    <div className={`${style} flex-1 h-full`}>
       <div className="text-secondary text-[16px] font-semibold flex items-center ">
         {title}{" "}
         <span>{showIcon && <Icon icon={icon} className="w-5 h-5 ml-4" />}</span>
@@ -127,6 +92,7 @@ const SingleColumn = ({
               onClick={() => setIsNavDropdownOpen((prev) => !prev)}
               className="text-sm my-1 hover:text-primary-110 underline"
               to={service?.route}
+              key={service?.title}
             >
               {service?.title}
             </Link>
@@ -143,7 +109,7 @@ const SingleColumn = ({
         onClick={() => setIsNavDropdownOpen((prev) => !prev)}
         state={subsection}
         to={link}
-        class={`${
+        className={`${
           isReadMore
             ? "hover:font-bold text-primary-110"
             : "text-lg hover:text-primary-110 text-secondary"

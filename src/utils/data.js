@@ -26,9 +26,7 @@ export const investmentBankingSubsection = {
     {
       title: "•	Securities Trading",
     },
-    {
-      title: "•	Property Investment",
-    },
+    
   ],
   heroIcon: "twemoji:flag-nigeria",
   id: "investmentBanking",
@@ -153,21 +151,19 @@ export const howToInvestSubsection = {
   title: "How to Invest",
   id: "howToInvest",
   url: "",
-  sameSiteDropDownUrl: true,
-  sameSiteUrl: true,
-  dropdownUrl: "/investors/howToInvest",
+  sameSiteDropDownUrl: false,
+  sameSiteUrl: false,
+  dropdownUrl: "",
   solutionsTitle: "",
   bgImage: "",
-  header: "",
+  header: "Coming Soon",
   services: [
     {
-      title:
-        "Equiserve Group Limited (EQL: JPJ) has appointed JP Jenkins to facilitate trading ...",
+      title: "This section is coming soon.",
     },
   ],
-  isReadMore: true,
-  content:
-    "Equiserve Group Limited (EQL: JPJ) has appointed JP Jenkins to facilitate trading (buy/sell) in its Ordinary Shares. This will allow new and",
+  isReadMore: false,
+  content: "",
 };
 export const corporateGovernanceSubsection = {
   title: "Corporate Governance",
@@ -224,6 +220,27 @@ export const reportsSubsection = {
   ],
   isReadMore: true,
 };
+
+export const debtInvestorsSubsection = {
+  title: "Debt Investors",
+  id: "debtInvestors",
+  url: "",
+  sameSiteDropDownUrl: true,
+  sameSiteUrl: true,
+  dropdownUrl: "/investors/debtInvestors",
+  solutionsTitle: "",
+  bgImage: "",
+  header: "",
+  services: [
+    {
+      title:
+        "Equiserve Group Limited periodically issues debt instruments to support its business growth: Information on Ratings, Long and medium-Term Debt Issuance Programmes, Bonds, Commercial Paper Programmes and Contacts.",
+    },
+  ],
+  isReadMore: false,
+};
+
+// After Reports, Presentations & Announcements on the navbbar ui, were to add the debt investors and just show that text underneath
 export const leadershipSubsection = {
   title: "Leadership",
   id: "leadership",
@@ -261,7 +278,7 @@ export const navbarData = [
     type: "navDropdown",
     subsections: [
       investmentBankingSubsection,
-      investmentManagementSubsection,
+      //investmentManagementSubsection,
       securitiesTradingSubsection,
     ],
   },
@@ -283,6 +300,7 @@ export const navbarData = [
       corporateGovernanceSubsection,
       advisorsSubsection,
       reportsSubsection,
+      debtInvestorsSubsection,
     ],
     title: "Investors",
     url: "/investors",
@@ -310,7 +328,7 @@ export const miniNavbarData = [
     type: "navDropdown",
     subsections: [
       investmentBankingSubsection,
-      investmentManagementSubsection,
+      //investmentManagementSubsection,
       securitiesTradingSubsection,
     ],
   },
@@ -385,12 +403,12 @@ export const subsidiaries = [
   //     },
   //   ],
   // },
-  {
-    id: "southAfrica",
-    title: "South Africa",
-    icon: "twemoji:flag-south-africa",
-    url: null,
-  },
+  // {
+  //   id: "southAfrica",
+  //   title: "South Africa",
+  //   icon: "twemoji:flag-south-africa",
+  //   url: null,
+  // },
   {
     id: "uk",
     title: "UK - International",
